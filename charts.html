@@ -1,0 +1,83 @@
+<html>
+<head>
+<script type="text/javascript" src="canvasjs.js"></script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 400px;">
+  </div>
+
+<script type="text/javascript">
+var dataarr=[];
+dataarr=[
+      {        
+        type: "spline",  
+        name: "Appointments",        
+        showInLegend: true,
+        dataPoints: [
+        {label: "Atlanta 1996" , y: 44} ,     
+        {label:"Sydney 2000", y: 37} ,     
+        {label: "Athens 2004", y: 34} ,     
+        {label: "Beijing 2008", y: 36} ,     
+        {label: "London 2012", y: 46}              
+        ]
+      }, 
+      {        
+        type: "spline",  
+        name: "Follow Ups",        
+        showInLegend: true,
+        dataPoints: [
+        {label: "Atlanta 1996" , y: 16} ,     
+        {label:"Sydney 2000", y: 28} ,     
+        {label: "Athens 2004", y: 32} ,     
+        {label: "Beijing 2008", y: 51} ,     
+        {label: "London 2012", y: 38}              
+        ]
+      },
+      {        
+        type: "spline",  
+        name: "CallBack",        
+        showInLegend: true,
+        dataPoints: [
+        {label: "Atlanta 1996" , y: 1} ,     
+        {label:"Sydney 2000", y: 11} ,     
+        {label: "Athens 2004", y: 9} ,     
+        {label: "Beijing 2008", y: 19} ,     
+        {label: "London 2012", y: 29}              
+        ]
+      }      
+      ];
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Dispositions Trend"             
+      }, 
+      animationEnabled: true,     
+      axisY:{
+        titleFontFamily: "arial",
+        titleFontSize: 12,
+        includeZero: false
+      },
+      toolTip: {
+        shared: true
+      },
+      data: dataarr,
+      legend:{
+        cursor:"pointer",
+        itemclick:function(e){
+          if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+          	e.dataSeries.visible = false;
+          }
+          else {
+          	e.dataSeries.visible = true;            
+          }
+          chart.render();
+        }
+      }
+    });
+
+chart.render();
+}
+</script>
+</body>
+</html>
